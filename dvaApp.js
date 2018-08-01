@@ -9,9 +9,9 @@ const app = dva();
 app.model(model);
 
 // 3. Router
-/*app.router(() => <Router />);*/
+app.router(() => <App />);
 
 // 4. Start
 export default () => {
-    return app.start(<App/>)
+    return app.start()
 }
