@@ -5,8 +5,5 @@ async function login(params) {
    /* return $.post("/v1/login/",params)*/
 }
 
-async function logout(params){
-    return $.getJSON("/v1/logout/",params)
-}
 
-export {login,logout}
+export {login,}
