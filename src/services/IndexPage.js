@@ -1,9 +1,6 @@
-import $ from '../utils/ajax';
-
+import $ from '../utils/fetch';
 async function login(params) {
-    alert("login");
-   /* return $.post("/v1/login/",params)*/
+    console.log("params",params)
+    return $.post("/v1//login/",params)
 }
-
-
-export {login,}
+export {login}

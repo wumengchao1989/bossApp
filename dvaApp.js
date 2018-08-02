@@ -1,15 +1,19 @@
 import React from 'react'
-import dva, { connect } from 'dva-no-router'
+import dva, {connect} from 'dva-no-router'
 import App from './App';
 import model from './model';
 // 1. Initialize
-const app = dva();
+const app = dva({
+    onError(e, dispatch) {
+        console.log('e', e)
+    }
+});
 
 // 2. Model
 app.model(model);
 
 // 3. Router
-app.router(() => <App />);
+app.router(() => <App/>);
 
 // 4. Start
 export default () => {
