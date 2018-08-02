@@ -7,8 +7,7 @@ export default {
     },
     effects: {
         * login({payload}, {call, put,select}) {
-            let backData = yield call(login,{username:"root",password:"Pai=3.14!%(@^"});
-            console.log(backData);
+            let backData = yield call(login,payload);
             yield put({
                 type: "update",
                 payload: {

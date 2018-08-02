@@ -30,31 +30,17 @@ class App extends Component<Props> {
     }
 
     componentDidMount() {
-        let result=fetch('http://47.100.246.45:8082/v1/login/', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                username: 'wmc_maintain@qq.com',
-                password: 'supercxp@123',
-            })
-        });
-        return result.then((response) => response.json())
-            .then((responseJson) => {
-                this.setState({
-                   role:responseJson.role
-                });
-                return responseJson.role;
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+
     }
 
     test=()=>{
-        this.props.login();
+        this.props.dispatch({
+            type: "model/login",
+            payload: {
+                username:"root",
+                password:"Pai=3.14!%(@^"
+            }
+        })
     };
 
     render() {
@@ -88,5 +74,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
 });
-
-export default connect(({model}) => ({model}), {login: () => (({type: 'model/login'}))})(App)
+function mapDispatchToProps({ model }) {
+    return {model};
+}
+export default connect(mapDispatchToProps)(App)
