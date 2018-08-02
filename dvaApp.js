@@ -2,6 +2,7 @@ import React from 'react'
 import dva, {connect} from 'dva-no-router'
 import App from './src/components/App';
 import model from './src/models/indexM';
+import Router from './router';
 // 1. Initialize
 const app = dva({
     onError(e, dispatch) {
@@ -13,7 +14,7 @@ const app = dva({
 app.model(model);
 
 // 3. Router
-app.router(() => <App/>);
+app.router(() =><Router/>);
 
 // 4. Start
 export default () => {
