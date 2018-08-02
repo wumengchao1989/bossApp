@@ -1,4 +1,4 @@
-import {login} from "./src/services/IndexPage";
+import {login} from "../services/IndexPage";
 
 export default {
     namespace: "model",
