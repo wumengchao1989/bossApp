@@ -14,7 +14,9 @@ export default createStackNavigator({
     mi0101c:{
         screen:MI0101C,
         navigationOptions:{
-            header:null
+            header:null,
         }
     }
+},{
+    mode: 'modal',
 });

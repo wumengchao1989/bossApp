@@ -10,7 +10,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import {Button} from 'antd-mobile-rn';
 import {connect} from 'dva-no-router';
-import {TabNavigator} from 'react-navigation';
+import {createBottomTabNavigator} from 'react-navigation';
 import BOSS from "./BOSS";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Login from "./Login";
@@ -105,7 +105,7 @@ function mapDispatchToProps({model}) {
 
 const reduxComponent = connect(mapDispatchToProps)(App);
 
-export default TabNavigator({
+export default createBottomTabNavigator({
         主页: {
             screen: reduxComponent
         },
