@@ -5,9 +5,7 @@ import model from './src/models/indexM';
 import Router from './router';
 // 1. Initialize
 const app = dva({
-    onError(e, dispatch) {
-        console.log('e', e)
-    }
+
 });
 
 // 2. Model

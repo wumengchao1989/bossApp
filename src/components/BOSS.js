@@ -12,7 +12,7 @@ import {Button} from 'antd-mobile-rn';
 import {connect} from 'dva-no-router';
 
 
-class MI0101C extends Component<Props> {
+class BOSS extends Component<Props> {
 
     constructor(props) {
         super(props);
@@ -33,7 +33,7 @@ class MI0101C extends Component<Props> {
     render() {
         return (
             <View style={styles.container}>
-                {MI0101C}
+                <Text>BOSS</Text>
                 <Button onClick={()=>this.test()}>test</Button>
             </View>
         );
@@ -59,4 +59,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default MI0101C
+export default BOSS
