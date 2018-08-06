@@ -2,8 +2,6 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import {createBottomTabNavigator, createStackNavigator} from 'react-navigation';
 import App from './src/components/App';
-import MI0101C from './src/components/MI0101C';
-import Login from "./src/components/Login";
 import BOSS from "./src/components/BOSS";
 import Icon from "react-native-vector-icons/FontAwesome";
 import BossHome from './src/components/Home/Index';

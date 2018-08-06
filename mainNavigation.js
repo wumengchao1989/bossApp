@@ -22,7 +22,7 @@ export default createStackNavigator(
             }),
         },
         Home:{
-            screen:BOSSHome
+            screen:BossHome
         },
         Login: {
             screen: LoginC

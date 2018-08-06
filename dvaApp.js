@@ -1,6 +1,5 @@
 import React from 'react'
 import dva, {connect} from 'dva-no-router'
-import App from './src/components/App';
 import model from './src/models/indexM';
 import Router from './mainNavigation';
 // 1. Initialize
