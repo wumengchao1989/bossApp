@@ -106,7 +106,7 @@ function mapDispatchToProps({model}) {
     return {model};
 }
 
-const reduxComponent = connect(mapDispatchToProps)(App);
-export default reduxComponent;
+
+export default connect(mapDispatchToProps)(App);;
 
 
