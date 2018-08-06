@@ -2,9 +2,9 @@ import React from 'react';
 
 import {createStackNavigator} from 'react-navigation';
 import BottomNavigation from './bottomNavigation';
-import MI0101C from "./src/components/MI0101C";
 import LoginC from "./src/components/Login";
-import BossHome from './src/components/Home/Index'
+import BossHome from './src/components/Console/Index'
+import UI0101C from "./src/components/UserInfoSubs/UI0101C";
 
 export default createStackNavigator(
     {
@@ -14,18 +14,19 @@ export default createStackNavigator(
                 header:null
             }),
         },
-        functionPage: {
-            screen: MI0101C,
-            navigationOptions: () => ({
-                title: `A`,
-                headerBackTitle: "返回"
-            }),
-        },
         Home:{
             screen:BossHome
         },
         Login: {
             screen: LoginC
         },
+        UI0101:{
+            screen:UI0101C,
+            navigationOptions: () => ({
+                title: `基本信息`,
+                headerBackTitle: `返回`
+            }),
+        }
+
     },
 )

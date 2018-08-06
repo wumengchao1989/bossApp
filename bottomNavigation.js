@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {createBottomTabNavigator, createStackNavigator} from 'react-navigation';
-import App from './src/components/App';
-import BOSS from "./src/components/BOSS";
+import App from './src/components/Home/Index';
+import BOSS from "./src/components/UserInfo/UserInfo";
 import Icon from "react-native-vector-icons/FontAwesome";
-import BossHome from './src/components/Home/Index';
+import BossHome from './src/components/Console/Index';
 
 export default createBottomTabNavigator({
         主页: {

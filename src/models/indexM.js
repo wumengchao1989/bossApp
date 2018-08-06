@@ -6,9 +6,9 @@ export default {
         name: "wmcs112321"
     },
     effects: {
-        * login({payload}, {call, put,select}) {
-            let backData = yield call(login,payload);
-            if(backData.success){
+        * login({payload}, {call, put, select}) {
+            let backData = yield call(login, payload);
+            if (backData.success) {
                 yield put({
                     type: "update",
                     payload: {
@@ -18,13 +18,16 @@ export default {
                 storage.save({
                     key: 'loginState',   // Note: Do not use underscore("_") in key!
                     data: {
-                       ifLogin:true,
+                        ifLogin: true,
+                        role: backData.role,
+                        menuInfo:backData.result,
+                        username:payload.username
                     },
-                    // if not specified, the defaultExpires will be applied instead.
-                    // if set to null, then it will never expire.
-                    expires: 1000 * 60
+                    expires: 1000 * 3600
                 });
-                yield payload.component.navigation.navigate("Home")
+                yield payload.component.navigation.goBack();
+            } else {
+                alert("登录失败")
             }
         },
     },

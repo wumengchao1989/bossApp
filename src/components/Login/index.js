@@ -32,7 +32,7 @@ class Login extends Component<Props> {
     };
 
     cancel = () => {
-        this.props.navigation.navigate("Home")
+        this.props.navigation.goBack();
     };
 
     handleChangeUserNm = (value) => {
@@ -90,12 +90,4 @@ function mapDispatchToProps({model}) {
 
 const LoginC = connect(mapDispatchToProps)(Login);
 
-export default LoginC;/* createStackNavigator(
-    {
-        Login: {
-            screen: LoginC,
-        },
-    },{
-        mode:"modal"
-    }
-);*/
+export default LoginC;
