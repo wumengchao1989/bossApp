@@ -10,11 +10,13 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import {Button} from 'antd-mobile-rn';
 import {connect} from 'dva-no-router';
-import {createBottomTabNavigator} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation';
 import BOSS from "./BOSS";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Login from "./Login";
 import Echarts from 'native-echarts';
+import BOSSHome from "./Home/Index";
+
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
     android:
@@ -34,7 +36,6 @@ class App extends Component<Props> {
     }
 
     componentDidMount() {
-
     }
 
     test = () => {
@@ -54,10 +55,10 @@ class App extends Component<Props> {
             },
             tooltip: {},
             legend: {
-                data:['销量']
+                data: ['销量']
             },
             xAxis: {
-                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+                data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
             },
             yAxis: {},
             series: [{
@@ -68,13 +69,15 @@ class App extends Component<Props> {
         };
         return (
             <View style={styles.container}>
+
                 <Text style={styles.welcome}>Welcome to React Native!</Text>
                 <Text style={styles.instructions}>To get started, edit App.js</Text>
                 <Text style={styles.instructions}>{this.props.model.name}</Text>
                 <Text>{this.state.role}</Text>
                 <Button onClick={() => this.test()}>test</Button>
-                <Button onClick={() => this.props.navigation.navigate("mi0101c")}>Move to MI0101C</Button>
-                <Echarts option={option} height={400} />
+                <Button onClick={() => this.props.navigation.navigate("functionPage")}>Move to function</Button>
+                <Echarts option={option} height={400}/>
+
             </View>
         );
     }
@@ -104,37 +107,6 @@ function mapDispatchToProps({model}) {
 }
 
 const reduxComponent = connect(mapDispatchToProps)(App);
-
-export default createBottomTabNavigator({
-        主页: {
-            screen: reduxComponent
-        },
-        控制台: {
-            screen: Login
-        },
-        我的:{
-            screen:BOSS
-        }
-    },
-    {
-        navigationOptions: ({navigation}) => ({
-            tabBarIcon: ({focused, tintColor}) => {
-                const {routeName} = navigation.state;
-                let iconName;
-                if (routeName === '主页') {
-                    iconName = "home";
-                } else if (routeName === '控制台') {
-                    iconName = "desktop";
-                }else if(routeName === '我的'){
-                    iconName = "user";
-                }
-                return <Icon name={iconName} size={25} color={tintColor}/>;
-            },
-        }),
-        tabBarOptions: {
-            activeTintColor: '#000',
-            inactiveTintColor: 'gray',
-        },}
-)
+export default reduxComponent;
 
 

@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, ScrollView} from 'react-native';
+import {StyleSheet, View,} from 'react-native';
 import {Button, InputItem, List} from 'antd-mobile-rn';
 import {connect} from 'dva-no-router';
+import {createStackNavigator} from "react-navigation";
+import BottomNavigation from "../../../bottomNavigation";
 
 
 class Login extends Component<Props> {
@@ -24,21 +26,27 @@ class Login extends Component<Props> {
             payload: {
                 username: this.state.userNm,
                 password: this.state.password,
+                component: this.props
             }
         })
     };
 
+    cancel = () => {
+        this.props.navigation.navigate("Home")
+    };
+
     handleChangeUserNm = (value) => {
         this.setState({
-            userNm:value
+            userNm: value
         })
     };
 
     handleChangePassword = (value) => {
         this.setState({
-            password:value
+            password: value
         })
     };
+
 
     render() {
         return (
@@ -49,6 +57,7 @@ class Login extends Component<Props> {
                     <InputItem style={styles.input} type="password" placeholder="请输入密码"
                                onChange={(value) => this.handleChangePassword(value)}>密码</InputItem>
                     <Button style={styles.button} onClick={() => this.login()}>登录</Button>
+                    <Button style={styles.button} onClick={() => this.cancel()}>取消</Button>
                 </List>
             </View>
         );
@@ -81,4 +90,12 @@ function mapDispatchToProps({model}) {
 
 const LoginC = connect(mapDispatchToProps)(Login);
 
-export default LoginC
+export default LoginC;/* createStackNavigator(
+    {
+        Login: {
+            screen: LoginC,
+        },
+    },{
+        mode:"modal"
+    }
+);*/
