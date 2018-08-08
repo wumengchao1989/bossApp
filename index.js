@@ -6,5 +6,4 @@ global.storage=storage;
 
 console.disableYellowBox = true;//禁用一些警告
 
-
 AppRegistry.registerComponent(appName, app);

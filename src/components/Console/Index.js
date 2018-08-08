@@ -29,7 +29,7 @@ class ConsoleIndex extends Component<Props> {
                 someFlag: true,
             },
         }).then(ret => {
-        })
+        });
     }
 
     test = () => {

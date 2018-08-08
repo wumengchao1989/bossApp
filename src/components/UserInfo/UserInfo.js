@@ -11,9 +11,9 @@ import {Image, StyleSheet, Text, View, TouchableHighlight} from 'react-native';
 import img from '../../assets/img.jpg';
 import {Button} from 'antd-mobile-rn'
 import Icon from "react-native-vector-icons/FontAwesome";
+import {connect} from "dva-no-router";
 
 class UserInfo extends Component<Props> {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -59,13 +59,16 @@ class UserInfo extends Component<Props> {
                     role = ret.role;
                     break;
             }
-
-            vm.setState({
-                role: role,
-                ifLogin: ret.ifLogin,
-                username: ret.username
+            vm.props.dispatch({
+                type: "model/setUserInfo",
+                payload: {
+                    role: role,
+                    ifLogin: ret.ifLogin,
+                    username: ret.username
+                }
             })
         })
+
     }
 
     handleLogin = () => {
@@ -119,16 +122,18 @@ class UserInfo extends Component<Props> {
                         <Image source={img} style={styles.img}/>
                     </View>
                     <View style={styles.userInfo}>
-                        {this.state.ifLogin ? <Text style={styles.userNm}>用户名:{this.state.username}</Text> :
+                        {this.props.model.ifLogin ? <Text style={styles.userNm}>用户名:{this.props.model.username}</Text> :
                             <Text style={{fontSize: 18, color: "#fff", marginTop: 14}}>尚未登录,请登录</Text>}
-                        {this.state.ifLogin ? <Text style={styles.userRole}>用户角色:{this.state.role}</Text> :
+                        {this.props.model.ifLogin ? <Text style={styles.userRole}>用户角色:{this.props.model.role}</Text> :
                             <Button style={styles.loginBtn} onClick={() => this.handleLogin()}>登录</Button>}
                     </View>
                 </View>
                 {
                     menuList.map((item) => {
-                        return <TouchableHighlight onPress={() => this.handleGoToNextPage(item.path)} style={[styles.itemList, {marginBottom: item.hasMargin ? 10 : 2,}]} underlayColor="#e8e8e8">
-                            <View style={{flex:1, flexDirection: "row"}}>
+                        return <TouchableHighlight onPress={() => this.handleGoToNextPage(item.path)}
+                                                   style={[styles.itemList, {marginBottom: item.hasMargin ? 10 : 2,}]}
+                                                   underlayColor="#e8e8e8">
+                            <View style={{flex: 1, flexDirection: "row"}}>
                                 <View style={styles.itemTextContainer}>
                                     <View style={styles.itemIcon}>
                                         <Icon name={item.icon}
@@ -218,4 +223,11 @@ const styles = StyleSheet.create({
     }
 });
 
-export default UserInfo
+
+function mapDispatchToProps({userInfo, model}) {
+    return {userInfo, model};
+}
+
+
+export default connect(mapDispatchToProps)(UserInfo);
+

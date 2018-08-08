@@ -3,7 +3,10 @@ import {login} from "../services/IndexPage";
 export default {
     namespace: "model",
     state: {
-        name: "wmcs112321"
+        role: "",
+        username:"",
+        menuInfo:[],
+        ifLogin: false
     },
     effects: {
         * login({payload}, {call, put, select}) {
@@ -12,7 +15,10 @@ export default {
                 yield put({
                     type: "update",
                     payload: {
-                        name: backData.role
+                        ifLogin: true,
+                        role: backData.role,
+                        menuInfo:backData.result,
+                        username:payload.username
                     }
                 });
                 storage.save({
@@ -30,6 +36,16 @@ export default {
                 alert("登录失败")
             }
         },
+        *setUserInfo({payload},{put}){
+            yield put({
+                type: "update",
+                payload: {
+                    ifLogin: payload.ifLogin,
+                    role: payload.role,
+                    username:payload.username
+                }
+            })
+        }
     },
     reducers: {
         update(state, action) {
