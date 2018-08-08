@@ -57,7 +57,9 @@ Print: Entry, ":CFBundleIdentifier", Does Not Exist
 >cd node_modules/react-native/third-party/glog-0.3.4/</br>
 > Run the configure script:./configure</br>
 
-
+Android端build：
+ 安卓端按照RN官网的步骤一步步来没有出现什么坑。
+ >https://facebook.github.io/react-native/docs/getting-started
 
      
      
