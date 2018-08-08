@@ -21,7 +21,7 @@ npm install
 ```Bash
 react-native run-ios
 ```
-   这里面坑比较多，有一些是国内网速导致的</br>
+   这里面遇到两个报错，第一个是网速慢导致的</br>
       1. 卡在incorrect hash：
     
  ```Bash
@@ -56,6 +56,8 @@ Print: Entry, ":CFBundleIdentifier", Does Not Exist
 >Open Terminal, go to your project's root folder and do:</br>
 >cd node_modules/react-native/third-party/glog-0.3.4/</br>
 > Run the configure script:./configure</br>
+
+
 
      
      
