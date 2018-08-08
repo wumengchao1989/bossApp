@@ -27,7 +27,8 @@ export default {
                         ifLogin: true,
                         role: backData.role,
                         menuInfo:backData.result,
-                        username:payload.username
+                        username:payload.username,
+                        companyId:backData.company_id
                     },
                     expires: 1000 * 3600
                 });

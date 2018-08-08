@@ -80,7 +80,6 @@ class UserInfo extends Component<Props> {
     };
 
     render() {
-
         const menuList = [{
             name: "基本信息",
             icon: "book",
@@ -91,7 +90,7 @@ class UserInfo extends Component<Props> {
             icon: "user",
             color: "#ff9601",
             hasMargin: true,
-            path: "UI0101"
+            path: "UI0201"
         }, {
             name: "合同信息",
             icon: "file",

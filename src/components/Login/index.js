@@ -77,7 +77,9 @@ const styles = StyleSheet.create({
         marginLeft: 30,
         marginRight: 30,
     },
-    input: {},
+    input: {
+
+    },
     button: {
         marginTop: 16,
     }
