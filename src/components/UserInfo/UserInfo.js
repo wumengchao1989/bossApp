@@ -128,7 +128,7 @@ class UserInfo extends Component<Props> {
                 {
                     menuList.map((item) => {
                         return <TouchableHighlight onPress={() => this.handleGoToNextPage(item.path)} style={[styles.itemList, {marginBottom: item.hasMargin ? 10 : 2,}]} underlayColor="#e8e8e8">
-                            <View style={{flex:1}}>
+                            <View style={{flex:1, flexDirection: "row"}}>
                                 <View style={styles.itemTextContainer}>
                                     <View style={styles.itemIcon}>
                                         <Icon name={item.icon}
