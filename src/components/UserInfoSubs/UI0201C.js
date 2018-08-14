@@ -1,11 +1,22 @@
 import React from 'react';
-import {StyleSheet, View, Text, ScrollView} from 'react-native';
+import {StyleSheet, View, Text, ScrollView, Image} from 'react-native';
 import {List, SwipeAction} from 'antd-mobile-rn';
 import {connect} from "dva-no-router";
+import img from "../../assets/img.jpg";
 
 const Item = List.Item;
 
 class UI0201C extends React.Component<any, any> {
+    static navigationOptions = ({navigation}) => {
+        return {
+            title: '联系人信息',
+            headerRight: (
+                <Text onPress={() => navigation.navigate('UI0202', {ifEdit: false})}
+                      style={{marginLeft: 5}}>新增联系人</Text>
+            ),
+        }
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -15,6 +26,7 @@ class UI0201C extends React.Component<any, any> {
 
     componentDidMount() {
         this.get_company_contact();
+
     }
 
     get_company_contact = () => {
@@ -40,36 +52,53 @@ class UI0201C extends React.Component<any, any> {
 
 
     render() {
+        let vm = this;
         const right = [
             {
                 text: '编辑',
-                onPress: () => console.log('more'),
+                onPress: () => {
+                    this.props.navigation.navigate("UI0202", {ifEdit: true,})
+
+                },
                 style: {backgroundColor: 'orange', color: 'white'},
             },
             {
                 text: '删除',
-                onPress: () => console.log('delete'),
+                onPress: () => {
+
+                },
                 style: {backgroundColor: 'red', color: 'white'},
             },
         ];
         const {companyContacts} = this.props.ui0201Info;
         return (
             <View>
-                <View style={{zIndex: 1,position:"absolute",justifyContent: 'center',alignItems: "center",flexDirection: "row"}}>
-                    <Text style={{textAlign:"center",flex:1}}>松开刷新...</Text>
+                <View style={{
+                    zIndex: 1,
+                    position: "absolute",
+                    justifyContent: 'center',
+                    alignItems: "center",
+                    flexDirection: "row"
+                }}>
+                    <Text style={{textAlign: "center", flex: 1}}>松开刷新...</Text>
                 </View>
                 <ScrollView onScrollEndDrag={this.get_company_contact} style={{zIndex: 22}}>
-                    <List >
-                        {companyContacts.map((item) => {
+                    <List>
+                        {companyContacts.map((item, index) => {
                             return <SwipeAction
                                 autoClose
                                 right={right}
-                                onOpen={() => console.log('open')}
-                                onClose={() => console.log('close')}
+                                onOpen={(id,rowId) => console.log('open',rowId)}
+                                onClose={(id,rowId) => {
+                                    console.log('close急急急', rowId)
+                                }}
+                                rowId={index}
+                                key={index}
+                                close={this.state.close}
                             >
-                                <View style={styles.listItem}>
+                                <View style={styles.listItem} key={index}>
                                     <View style={styles.avatar}>
-
+                                        <Image source={img} style={styles.img}/>
                                     </View>
                                     <View style={styles.contactInfo}>
                                         <Text style={styles.name}>{item.name || "未知"}</Text>
@@ -77,7 +106,7 @@ class UI0201C extends React.Component<any, any> {
                                         <Text style={styles.tel}>{item.tel || "未知"}</Text>
                                     </View>
                                     <View style={styles.occupation}>
-                                        <Text style={styles.occupationTitle}>{item.title}</Text>
+                                        <Text style={styles.occupationTitle}>{item.title || "未知"}</Text>
                                     </View>
                                 </View>
                             </SwipeAction>
@@ -118,8 +147,15 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
     avatar: {
-        flex: 1 / 4,
-    }
+        flex: 2 / 9,
+        marginTop: 5,
+
+    },
+    img: {
+        width: 70,
+        borderRadius: 35,
+        height: 70
+    },
 });
 
 

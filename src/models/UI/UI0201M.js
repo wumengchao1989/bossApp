@@ -14,7 +14,11 @@ export default {
                     companyContacts: backData.result
                 }
             })
+        },
+        *create_company_contact({payload},{call,put}){
+            const backData=yield call(create_company_contact,payload)
         }
+
     },
     reducers: {
         update(state, action) {
